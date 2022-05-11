@@ -1,0 +1,113 @@
+.content {
+  width: 100%;
+}
+
+.content table {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.noneth {
+  width: 0;
+  padding: 0;
+  border: 0;
+}
+
+.content .open_modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.content .open_modal:hover {
+  background: #0000005e;
+}
+
+.content td,
+.content th {
+  color: #1f284b;
+	font-size: 14px;
+	height: 40px;
+	padding: 0 10px;
+	border:1px solid #1f284b;
+}
+
+.content td span,
+.content th span {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.content thead th,
+.content thead th span {
+  background: #1f284b;
+  color: #ffffff;
+}
+
+.content tr {
+  position: relative;
+}
+
+.content thead th {
+  border-right: 1px solid #ffffff;
+}
+
+.content thead th:last-child {
+  border-right: 1px solid #1f284b;
+}
+
+.width_camp1 {
+  width: 150px;
+}
+
+.width_camp2 {
+  width: 180px;
+}
+
+.width_camp3 {
+  width: 200px;
+}
+
+
+.button_1 {
+  gap:0 40px;
+  display: flex;
+  align-items: center;
+  padding-right: 25px;
+}
+
+button,
+.button_1 a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1f284b;
+  width: 260px;
+  border: 1px solid #dfdfdf;
+  color: #6fc06c;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 8px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+button:hover,
+.button_1 a:hover {
+  background:#6fc06c;
+  color: #1f284b;
+}
