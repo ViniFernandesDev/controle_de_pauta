@@ -1,23 +1,30 @@
+import { useState } from 'react'
 
 import Title from '../components/title/Title';
 import Filtro from './tarifario/filtro/Filtro';
 import ListTarifario from './tarifario/ListTarifario';
+import Modal from '../components/modal/Modal';
 
 function Home() {
 
-    const display100 = {
-        width: '100%',
-        display:'flex',
-        justifyContent:'space-between'
-    }
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     return (
         <>
             
-            <div style={display100}>
+            <div className="display100BetCen">
                 <Title title="Tarefário | Filtro" />
 
-                <div className="button_1">
+                <div>
+                    <button onClick={() => setIsModalVisible(true)}>Adicionar Job</button>
+
+                    {isModalVisible ? (
+
+                        <Modal onClose={() => setIsModalVisible(false)}>
+                            teste
+                        </Modal>
+
+                    ): null }
                 </div>
             </div>
 

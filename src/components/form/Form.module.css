@@ -1,3 +1,7 @@
+.input {
+    width: 255px;
+}
+
 .input select {
     -webkit-appearance: none !important;
     -moz-appearance: none !important;

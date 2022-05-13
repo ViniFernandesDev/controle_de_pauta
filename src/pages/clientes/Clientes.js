@@ -1,8 +1,13 @@
+import { useState } from 'react'
+
 import Input from "../../components/form/Input"
 import Title from "../../components/title/Title"
 import ListClientes from "./ListClientes"
+import Modal from '../../components/modal/Modal';
 
 function Clientes() {
+
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     return (
         <>
@@ -13,7 +18,15 @@ function Clientes() {
                 <Input type="text" text="Encontrar" name="encontrarCliente" />
 
                 <div>
-                    <button>Adicionar Cliente</button>
+                    <button onClick={() => setIsModalVisible(true)}>Adicionar Cliente</button>
+
+                    {isModalVisible ? (
+
+                        <Modal onClose={() => setIsModalVisible(false)}>
+                            teste
+                        </Modal>
+
+                    ): null }
                 </div>
             </div>
 
