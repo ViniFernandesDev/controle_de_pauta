@@ -1,9 +1,10 @@
 import { useState } from 'react'
 
 import Title from '../components/title/Title';
-import Filtro from './tarifario/filtro/Filtro';
-import ListTarifario from './tarifario/ListTarifario';
+import Filtro from './inicial/filtro/Filtro';
+import ListTarifario from './inicial/ListTarifario';
 import Modal from '../components/modal/Modal';
+import AddJob from './inicial/AddJob';
 
 function Home() {
 
@@ -13,7 +14,7 @@ function Home() {
         <>
             
             <div className="display100BetCen">
-                <Title title="Tarefário | Filtro" />
+                <Title title="Listagem | Filtro" />
 
                 <div>
                     <button onClick={() => setIsModalVisible(true)}>Adicionar Job</button>
@@ -21,7 +22,7 @@ function Home() {
                     {isModalVisible ? (
 
                         <Modal onClose={() => setIsModalVisible(false)}>
-                            teste
+                            <AddJob />
                         </Modal>
 
                     ): null }

@@ -1,13 +1,9 @@
 import styles from './Form.module.css'
 
-function Submit ({type,name,value}) {
+function Submit ({text}) {
     return (
         <div className={styles.input}>
-            <input
-            type={type} 
-            name={name} 
-            value={value}
-            ></input>
+            <button>{text}</button>
         </div>
     )
 }
