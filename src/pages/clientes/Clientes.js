@@ -4,6 +4,7 @@ import Input from "../../components/form/Input"
 import Title from "../../components/title/Title"
 import ListClientes from "./ListClientes"
 import Modal from '../../components/modal/Modal';
+import AddClientes from './AddClientes';
 
 function Clientes() {
 
@@ -23,7 +24,7 @@ function Clientes() {
                     {isModalVisible ? (
 
                         <Modal onClose={() => setIsModalVisible(false)}>
-                            teste
+                            <AddClientes/>
                         </Modal>
 
                     ): null }

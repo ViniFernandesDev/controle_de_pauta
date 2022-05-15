@@ -1,43 +1,32 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
+import InputHook from '../../components/form/InputHook';
 import SelectHook from '../../components/form/SelectHook';
 import Submit from '../../components/form/Submit';
-
-import styles from '../../components/form/Form.module.css'
 
 function AddJob() {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => console.table(data);
+    console.log(errors)
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
 
-            <SelectHook label="Clientes" {...register("Clientes")} />
+            <SelectHook label="Clientes" register={register} required />
 
-            <SelectHook label="Campanhas" {...register("Campanhas")} />
+            <SelectHook label="Campanhas" register={register} required />
 
-            <SelectHook label="Requisitante" {...register("Requisitante")} />
+            <SelectHook label="Responsável" register={register} required />
 
-            <SelectHook label="Responsável" {...register("Status")} />
+            <SelectHook label="Status" register={register} required />
 
-            <SelectHook label="Status" {...register("Status")} />
+            <InputHook label="Nome do Job" register={register} required />
 
-            <div className={styles.input}>
-                <label>Nome do Job</label>
-                <input type="text" placeholder="Qual o nome do Job" {...register("Nome do Job", {required: true})} />
-            </div>
+            <InputHook label="Iniciar em" register={register} required />
 
-            <div className={styles.input}>
-                <label>Iniciar em</label>
-                <input type="text" {...register("Iniciar em")} />
-            </div>
-
-            <div className={styles.input}>
-                <label>Concluir em</label>
-                <input type="text" {...register("Concluir em")} />
-            </div>
+            <InputHook label="Concluir em" register={register} required />
             
             <Submit text="Cadastrar Job" />
 

@@ -20,6 +20,7 @@
     border-bottom-right-radius: 10px;
 }
 
+.input input,
 .input textarea,
 .input input[type="text"] {
     width: 100%;
