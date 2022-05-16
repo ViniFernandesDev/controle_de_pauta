@@ -1,0 +1,217 @@
+{
+    "jobs": [
+        {
+            "id": "1",
+            "inicio": "2018-05-01 08:00:54",
+            "fim": "2018-05-30 18:00:00",
+            "nome": "Landing Pages",
+            "descricao": "<p>[x] 01.05<br />[x] 02.05<br />[x] 07.05<br />[x] 09.05<br />[x] 11.05<br />[x] 14.05<br />[x] 16.05<br />[x] 18.05<br />[x] 21.05<br />[x] 23.05<br />[x] 25.05<br />[x] 28.05<br />[&nbsp; &nbsp;] 30.05</p>",
+            "campanha": "Site",
+            "data_criacao": "2018-04-20 11:56:34",
+            "data_atualizacao": "0000-00-00 00:00:00",
+            "fk_id_campanha": "1",
+            "fk_id_cliente": "Zortea",
+            "fk_id_responsavel": "Alan, Thiago",
+            "fk_id_requisitante": "Thiago",
+            "fk_id_status": "1",
+            "fk_name_status": "Em Andamento"
+        },
+        {
+            "id": "2",
+            "inicio": "2018-05-10 10:00:54",
+            "fim": "2018-06-20 18:00:00",
+            "nome": "Loja Virtual",
+            "descricao": "<p>[x] 01.05<br />[x] 02.05<br />[x] 07.05<br />[x] 09.05<br />[x] 11.05<br />[x] 14.05<br />[x] 16.05<br />[x] 18.05<br />[x] 21.05<br />[x] 23.05<br />[x] 25.05<br />[x] 28.05<br />[&nbsp; &nbsp;] 30.05</p>",
+            "campanha": "Site",
+            "data_criacao": "2018-04-20 11:56:34",
+            "data_atualizacao": "0000-00-00 00:00:00",
+            "fk_id_campanha": "1",
+            "fk_id_cliente": "Zortea",
+            "fk_id_responsavel": "Alan, Felipe, Vinícius",
+            "fk_id_requisitante": "Thiago",
+            "fk_id_status": "2",
+            "fk_name_status": "Em Aprovação"
+        },
+        {
+            "id": "3",
+            "inicio": "2018-05-10 10:00:54",
+            "fim": "2018-06-20 18:00:00",
+            "nome": "Loja Virtual",
+            "descricao": "<p>[x] 01.05<br />[x] 02.05<br />[x] 07.05<br />[x] 09.05<br />[x] 11.05<br />[x] 14.05<br />[x] 16.05<br />[x] 18.05<br />[x] 21.05<br />[x] 23.05<br />[x] 25.05<br />[x] 28.05<br />[&nbsp; &nbsp;] 30.05</p>",
+            "campanha": "Site",
+            "data_criacao": "2018-04-20 11:56:34",
+            "data_atualizacao": "0000-00-00 00:00:00",
+            "fk_id_campanha": "1",
+            "fk_id_cliente": "Zortea",
+            "fk_id_responsavel": "Alan, Felipe, Vinícius",
+            "fk_id_requisitante": "Thiago",
+            "fk_id_status": "3",
+            "fk_name_status": "Em Alteração"
+        },
+        {
+            "id": "4",
+            "inicio": "2018-05-10 10:00:54",
+            "fim": "2018-06-20 18:00:00",
+            "nome": "Artes Facebook",
+            "descricao": "<p>[x] 01.05<br />[x] 02.05<br />[x] 07.05<br />[x] 09.05<br />[x] 11.05<br />[x] 14.05<br />[x] 16.05<br />[x] 18.05<br />[x] 21.05<br />[x] 23.05<br />[x] 25.05<br />[x] 28.05<br />[&nbsp; &nbsp;] 30.05</p>",
+            "campanha": "Mídias sociais",
+            "data_criacao": "2018-04-20 11:56:34",
+            "data_atualizacao": "0000-00-00 00:00:00",
+            "fk_id_campanha": "2",
+            "fk_id_cliente": "Ervas de Gaya",
+            "fk_id_responsavel": "Alan, Felipe, Vinícius",
+            "fk_id_requisitante": "Thiago",
+            "fk_id_status": "4",
+            "fk_name_status": "Informação Pendente"
+        },
+        {
+            "id": "5",
+            "inicio": "2018-05-10 10:00:54",
+            "fim": "2018-06-20 18:00:00",
+            "nome": "Panfleto",
+            "descricao": "<p>[x] 01.05<br />[x] 02.05<br />[x] 07.05<br />[x] 09.05<br />[x] 11.05<br />[x] 14.05<br />[x] 16.05<br />[x] 18.05<br />[x] 21.05<br />[x] 23.05<br />[x] 25.05<br />[x] 28.05<br />[&nbsp; &nbsp;] 30.05</p>",
+            "campanha": "Material Gráfico",
+            "data_criacao": "2018-04-20 11:56:34",
+            "data_atualizacao": "0000-00-00 00:00:00",
+            "fk_id_campanha": "3",
+            "fk_id_cliente": "Grupo Pegoraro",
+            "fk_id_responsavel": "Adilson",
+            "fk_id_requisitante": "Thiago",
+            "fk_id_status": "5",
+            "fk_name_status": "Concluído"
+        },
+        {
+            "id": "6",
+            "inicio": "2018-05-10 10:00:54",
+            "fim": "2018-06-20 18:00:00",
+            "nome": "Banner",
+            "descricao": "<p>[x] 01.05<br />[x] 02.05<br />[x] 07.05<br />[x] 09.05<br />[x] 11.05<br />[x] 14.05<br />[x] 16.05<br />[x] 18.05<br />[x] 21.05<br />[x] 23.05<br />[x] 25.05<br />[x] 28.05<br />[&nbsp; &nbsp;] 30.05</p>",
+            "campanha": "Material Gráfico",
+            "data_criacao": "2018-04-20 11:56:34",
+            "data_atualizacao": "0000-00-00 00:00:00",
+            "fk_id_campanha": "3",
+            "fk_id_cliente": "Marpe",
+            "fk_id_responsavel": "Diane",
+            "fk_id_requisitante": "Marco",
+            "fk_id_status": "6",
+            "fk_name_status": "Cancelado"
+        }
+    ],
+    
+    "clientes": [
+        {
+            "id": "1",
+            "nome": "2A3R",
+            "telefone": "(49) 99999999",
+            "email": "teste1@gmail.com",
+            "site": "www.teste.com.br"
+        },
+        {
+            "id": "2",
+            "nome": "ACIOC",
+            "telefone": "(49) 3521-1333",
+            "email": "financeiro@gmail.com",
+            "site": "www.teste.com.br"
+        },
+        {
+            "id": "3",
+            "nome": "AfiaFacil",
+            "telefone": "(49) 0000000",
+            "email": "afia@gmail.com",
+            "site": "www.teste.com.br"
+        },
+        {
+            "id": "4",
+            "nome": "Tirolesa",
+            "telefone": "(49) 0000000",
+            "email": "tirolesa@gmail.com",
+            "site": "www.tirolesa.com.br"
+        }
+
+    ],
+
+    "campanhas": [
+        {
+            "id": "1",
+            "nome": "Site",
+            "cliente": "Tirolesa",
+            "briefing": "Desenvolvimento de site"
+        },
+        {
+            "id": "2",
+            "nome": "Mídias Sociais",
+            "cliente": "Marpe",
+            "briefing": "Desenvolvimento B2b"
+        },
+        {
+            "id": "3",
+            "nome": "Material Gráfico",
+            "cliente": "Bordignon",
+            "briefing": "Cardápios Abril"
+        },
+        {
+            "id": "4",
+            "nome": "Planejamento",
+            "cliente": "Empresa",
+            "briefing": "Organização pauta"
+        },
+        {
+            "id": "5",
+            "nome": "E-mail",
+            "cliente": "Studio Alpha",
+            "briefing": "Briefing da campanha"
+        }
+    ],
+
+    "status": [
+        {
+            "id": "1",
+            "nome": "Em Andamento"
+        },
+        {
+            "id": "2",
+            "nome": "Em Aprovação"
+        },
+        {
+            "id": "3",
+            "nome": "Em Alteração"
+        },
+        {
+            "id": "4",
+            "nome": "Informação Pendente"
+        },
+        {
+            "id": "5",
+            "nome": "Concluído"
+        },
+        {
+            "id": "6",
+            "nome": "Cancelado"
+        }
+    ],
+
+    "responsavel": [
+        {
+            "id": "1",
+            "nome": "Arisson"
+        },
+        {
+            "id": "2",
+            "nome": "Alan"
+        },
+        {
+            "id": "3",
+            "nome": "Vinícius"
+        },
+        {
+            "id": "4",
+            "nome": "Felipe"
+        },
+        {
+            "id": "5",
+            "nome": "Marco"
+        }
+    ]
+}
+
+

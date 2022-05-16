@@ -120,3 +120,12 @@ GERAL
   justify-content: space-between;
   align-items: center;
 }
+
+/*COR STATUS*/
+
+.status-1 {background: #c6f9bd;}
+.status-2 {background: #f9f2c4;}
+.status-3 {background: #ffcfe3;}
+.status-4 {background: #ffaeae;}
+.status-5 {background: #d2d2d2;}
+.status-6 {background: #f8f8f8;}
