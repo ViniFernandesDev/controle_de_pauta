@@ -7,9 +7,13 @@ import Submit from '../../components/form/Submit';
 
 function AddJob() {
 
-    const { register, formState: { errors }, handleSubmit } = useForm();
-    const onSubmit = data => console.table(data);
-    console.log(errors)
+    const { register, handleSubmit } = useForm();
+    const onSubmit = data => {
+        fetch("http://localhost:5000/jobs", {
+            method: 'POST',
+            body: JSON.stringify(data)
+        })
+    }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -31,6 +35,8 @@ function AddJob() {
             <Submit text="Cadastrar Job" />
 
         </form>
+
+       
 
         
     )

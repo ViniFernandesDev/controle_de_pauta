@@ -1,13 +1,13 @@
-import { useState } from 'react'
+import {useState, useEffect} from 'react'
 
-import Title from '../components/title/Title';
-import Filtro from './inicial/filtro/Filtro';
-import ListTarifario from './inicial/ListTarifario';
-import Modal from '../components/modal/Modal';
-import AddJob from './inicial/AddJob';
+import Title from '../../components/title/Title';
+import ListTarifario from './ListTarifario';
+import Modal from '../../components/modal/Modal';
+import AddJob from './AddJob';
 
 function Home() {
 
+    /* MODAL */
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     return (
@@ -28,8 +28,6 @@ function Home() {
                     ): null }
                 </div>
             </div>
-
-            <Filtro />
 
             <ListTarifario/>
 

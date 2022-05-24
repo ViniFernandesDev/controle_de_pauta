@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
+import Home from './pages/inicial/Home'
 import Clientes from './pages/clientes/Clientes'
 import Campanhas from './pages/campanhas/Campanhas'
 import Container from './components/container/Container'
