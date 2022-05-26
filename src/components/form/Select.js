@@ -8,7 +8,7 @@ function Select ({text,name,itemBd,handleOnChange,value}) {
                 <option value="todos">Selecione uma opção:</option>
 
                 {itemBd.map((option) => (
-                    <option value={option.nome} key={option.id}>
+                    <option value={option.id} key={option.id}>
                         {option.nome}
                     </option>
                 ))}

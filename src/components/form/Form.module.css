@@ -69,3 +69,11 @@
     border-radius: 20px;
     text-transform: uppercase;
 }
+
+.textarea {
+    width: 100%;
+}
+
+.textarea div {
+    width: 100%;
+}

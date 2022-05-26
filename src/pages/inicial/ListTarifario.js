@@ -1,4 +1,7 @@
-import {useState, useMemo, useEffect} from 'react'
+import {useMemo, useState} from 'react'
+
+/* CUSTOM HOOK FETCH API */
+import { useFetch } from "../../components/hooks/useFetch";
 
 import Table from "../../components/table/Table"
 import Select from '../../components/form/Select'
@@ -6,32 +9,29 @@ import styles from './Filtro.module.css'
 
 function ListTarifario() {
 
-    /* FETCH CLIENTES */
-    const [clientes, setClientes] = useState([]);
+     /* FETCH CLIENTES */
+     const urlClientes = "http://localhost:5000/clientes";
+     const {data: clientes} = useFetch(urlClientes);
+ 
+     /* FETCH CAMPANHAS */
+     const urlCampanhas = "http://localhost:5000/campanhas";
+     const {data: campanhas} = useFetch(urlCampanhas);
+ 
+     /* FETCH RESPONSAVEL */
+     const urlResponsavel = "http://localhost:5000/responsavel";
+     const {data: responsavel} = useFetch(urlResponsavel);
+ 
+     /* FETCH STATUS */
+     const urlStatus = "http://localhost:5000/status";
+     const {data: status} = useFetch(urlStatus);
 
-    useEffect(() => {
-        fetch("http://localhost:5000/clientes")
-        .then(response => response.json())
-        .then((data) => {
-            setClientes(data)
-        })
-        .catch((err) => console.log(err))
-    
-    }, [])
+    /* FETCH ORDENACAO */
+    const urlOrdenacao = "http://localhost:5000/ordenacao";
+    const {data: ordenacao} = useFetch(urlOrdenacao);
 
-    const [jobs, setJobs] = useState([])
-
-    useEffect(() => {
-        fetch("http://localhost:5000/jobs")
-        .then(response => response.json())
-        .then((data) => {
-            setJobs(data)
-        })
-        .catch((err) => console.log(err))
-       
-    }, [])
-
-
+     /* FETCH JOBS */
+     const urlJobs = "http://localhost:5000/jobs";
+     const {data: jobs} = useFetch(urlJobs);
 
     const [selectedJob, setSelectedJob] = useState();
 
@@ -54,11 +54,10 @@ function ListTarifario() {
     return (
         <>
             <form className={styles.box_filter}>
-
                 <Select text="Cliente" name="cliente" itemBd={clientes} handleOnChange={handleCategoryChange} />
-                <Select text="Campanha" name="campanha" itemBd={clientes}  />  
-                <Select text="Status" name="status" itemBd={clientes} />
-                <Select text="Ordenação" name="ordenacao" itemBd={clientes} /> 
+                <Select text="Campanha" name="campanha" itemBd={campanhas}  />  
+                <Select text="Status" name="status" itemBd={status} />
+                <Select text="Ordenação" name="ordenacao" itemBd={ordenacao} /> 
             </form> 
             
             <Table>
@@ -76,9 +75,9 @@ function ListTarifario() {
                     </thead>
                     
                     <tbody>
-                        {filteredList.map((item, index) => {
+                        {filteredList.map((item) => {
                                 return (
-                                    <tr key={index} className={`status-${item.id}`}>
+                                    <tr key={item.id} className={`status-${item.id}`}>
 
                                         <td className={'width_camp2'}>
                                             <span>{item.fk_id_cliente}</span>
