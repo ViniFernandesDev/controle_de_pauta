@@ -7,14 +7,20 @@ function ListCampanhas() {
     const [campanhas, setCampanhas] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:5000/campanhas")
+        fetch("http://laravelapi-pauta.com.l.stph.srv.br/api/jobs", {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer 4|VyIqYcIF0ifyGWfjhKKWUPoKPi1bznqmOjDVruU4',
+            }
+        })
         .then(response => response.json())
         .then((data) => {
-            setCampanhas(data)
+            setCampanhas(data);
         })
         .catch((err) => console.log(err))
        
     }, [])
+    
 
     return (
         <>
@@ -30,7 +36,7 @@ function ListCampanhas() {
                     </thead>
 
                     <tbody>
-                        {campanhas.map((item, index) => {
+                        {campanhas?.map((item, index) => {
                             return (
                                 <tr key={index}>
                                     <td>
@@ -38,7 +44,7 @@ function ListCampanhas() {
                                     </td>
 
                                     <td>
-                                        <span>{item.nome}</span>
+                                        <span>{item.name}</span>
                                     </td>
 
                                     <td>

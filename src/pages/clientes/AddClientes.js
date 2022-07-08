@@ -14,7 +14,7 @@ function AddClientes() {
         <form onSubmit={handleSubmit(onSubmit)}>
 
             <InputHook label="Nome do cliente" register={register} required />
-
+            
             <InputHook label="CNPJ" register={register} required />
 
             <InputHook label="Razão Social" register={register} required />

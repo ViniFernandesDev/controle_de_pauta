@@ -1,19 +1,21 @@
 import styles from './Form.module.css'
 
-function Select ({text,name,itemBd,handleOnChange,value}) {
+function Select ({name, itemBd, onChange, label}) {
     return (
-        <div className={styles.input}>
-            <label htmlFor={name}>{text}</label>
-            <select  name={name} id={name} onChange={handleOnChange} >
-                <option value="todos">Selecione uma opção:</option>
 
-                {itemBd.map((option) => (
-                    <option value={option.id} key={option.id}>
-                        {option.nome}
+        <div className={styles.input}>
+            <label>{label}</label>
+
+            <select name={name} onChange={onChange} required>
+                <option value="">Selecione uma opção</option>
+                {itemBd && itemBd.map((item) => (
+                    <option value={item.id} key={item.id}>
+                        {item.nome}
                     </option>
                 ))}
             </select>
         </div>
+
     )
 }
 

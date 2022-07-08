@@ -1,25 +1,14 @@
-import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 /* CUSTOM HOOK FETCH API */
 import { useFetch } from "../../components/hooks/useFetch";
 
-import InputHook from '../../components/form/InputHook';
-import SelectHook from '../../components/form/SelectHook';
+import Input from '../../components/form/Input';
+import Select from '../../components/form/Select';
 import TextArea from '../../components/form/TextArea';
 import Submit from '../../components/form/Submit';
 
-function AddJob() {
-
-    const { register, handleSubmit } = useForm();
-    const onSubmit = data => {
-        fetch("http://localhost:5000/jobs", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-    }
+function AddJob() {    
 
     /* FETCH CLIENTES */
     const urlClientes = "http://localhost:5000/clientes";
@@ -38,25 +27,46 @@ function AddJob() {
     const {data: status} = useFetch(urlStatus);
 
     
+    const [formValues, setFormValues] = useState([]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        
+        const res = await fetch("http://localhost:5000/jobs", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formValues),
+        });
+
+        console.log(formValues);
+
+    }
+
+    function handleChange(e) {
+        setFormValues({...formValues, [e.target.name]: e.target.value})
+    }
+    
     return (
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form id="formAdd" onSubmit={handleSubmit}>
 
-            <SelectHook label="Clientes" itemBd={clientes} {...register("Clientes")} required />
+            <Select name="clientes" label="Clientes" itemBd={clientes} onChange={handleChange}/>
 
-            <SelectHook label="Campanhas" itemBd={campanhas} {...register("Campanhas")} required />
+            <Select name="campanhas" label="Campanhas" itemBd={campanhas} onChange={handleChange}/>
 
-            <SelectHook label="Responsável" itemBd={responsavel} {...register("Responsável")} required />
+            <Select name="responsavel" label="Responsável" itemBd={responsavel} onChange={handleChange}/>
 
-            <SelectHook label="Status" itemBd={status}  {...register("Status")} required />
+            <Select name="status" label="Status" itemBd={status} onChange={handleChange}/>
 
-            <InputHook label="Nome do Job" register={register} required />
+            <Input name="nome" text="Nome do Job" onChange={handleChange}/>
 
-            <InputHook label="Iniciar em" register={register} required />
+            <Input name="inicio" text="Iniciar em" onChange={handleChange}/>
 
-            <InputHook label="Concluir em" register={register} required />
+            <Input name="fim" text="Concluir em" onChange={handleChange}/>
 
-            <TextArea label="Descrição" placeholder="Descrição do Job" register={register} required />
+            <TextArea name="descricao" text="Descrição" placeholder="Descrição do Job" onChange={handleChange}/>
             
             <Submit text="Cadastrar Job" />
 

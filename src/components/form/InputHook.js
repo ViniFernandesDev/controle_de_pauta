@@ -1,10 +1,10 @@
 import styles from './Form.module.css'
 
-const InputHook = ({ label, register, required }) => (
+const InputHook = ({ name, label, register, required }) => (
 
     <div className={styles.input}>
         <label>{label}</label>
-        <input {...register(label, { required })} />
+        <input name={name} {...register(label, { required })} />
     </div>
 
 );
