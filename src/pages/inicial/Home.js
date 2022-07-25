@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 
 import Title from '../../components/title/Title';
 import ListTarifario from './ListTarifario';

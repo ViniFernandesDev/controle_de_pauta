@@ -1,66 +1,55 @@
-import {useMemo, useState} from 'react'
+import {useState} from 'react'
 
 /* CUSTOM HOOK FETCH API */
-import { useFetch } from "../../components/hooks/useFetch";
+import { useFetchGet } from "../../components/hooks/useFetchGet";
 
 import Table from "../../components/table/Table"
 import Select from '../../components/form/Select'
-import styles from './Filtro.module.css'
+import './ListTarifario.css'
+
+import Modal from '../../components/modal/Modal';
 
 function ListTarifario() {
 
-     /* FETCH CLIENTES */
-     const urlClientes = "http://localhost:5000/clientes";
-     const {data: clientes} = useFetch(urlClientes);
- 
-     /* FETCH CAMPANHAS */
-     const urlCampanhas = "http://localhost:5000/campanhas";
-     const {data: campanhas} = useFetch(urlCampanhas);
- 
-     /* FETCH RESPONSAVEL */
-     const urlResponsavel = "http://localhost:5000/responsavel";
-     const {data: responsavel} = useFetch(urlResponsavel);
- 
-     /* FETCH STATUS */
-     const urlStatus = "http://localhost:5000/status";
-     const {data: status} = useFetch(urlStatus);
-
-    /* FETCH ORDENACAO */
-    const urlOrdenacao = "http://localhost:5000/ordenacao";
-    const {data: ordenacao} = useFetch(urlOrdenacao);
-
-     /* FETCH JOBS */
-     const urlJobs = "http://localhost:5000/jobs";
-     const {data: jobs} = useFetch(urlJobs);
-
-    const [selectedJob, setSelectedJob] = useState();
-
-    // Function to get filtered list
-    function getFilteredList() {
-        // Avoid filter when selectedJob is null
-        if (!selectedJob) {
-        return jobs;
-        }
-        return jobs.filter((item) => item.fk_id_cliente === selectedJob);
+    function ajustDate(d) {
+        return new Date(d).toLocaleDateString('pt-BR');
     }
 
-    // Avoid duplicate function calls with useMemo
-    let filteredList = useMemo(getFilteredList, [selectedJob, jobs]);
+    /* FETCH JOBS */
+    const urlJobs = "http://laravelapi-pauta.com.l.stph.srv.br/api/jobs";
+    const {value: jobs, loadingJobs} = useFetchGet(urlJobs);
 
-    function handleCategoryChange(event) {
-        setSelectedJob(event.target.value);
-    }
+    /* FETCH JOBS */
+    const urlClientes = "http://laravelapi-pauta.com.l.stph.srv.br/api/clients";
+    const {value: clients} = useFetchGet(urlClientes);
 
+      /* FETCH CAMPANHAS */
+    const urlCampanhas = "http://laravelapi-pauta.com.l.stph.srv.br/api/campaigns";
+    const {value: campanhas} = useFetchGet(urlCampanhas);
+
+     /* FETCH Status */
+     const urlStatus = "http://laravelapi-pauta.com.l.stph.srv.br/api/status";
+     const {value: status} = useFetchGet(urlStatus);
+
+     /* FETCH Status */
+     const urlPriorities = "http://laravelapi-pauta.com.l.stph.srv.br/api/priorities";
+     const {value: priorities} = useFetchGet(urlPriorities);
+
+    /* MODAL */
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    
     return (
         <>
-            <form className={styles.box_filter}>
-                <Select text="Cliente" name="cliente" itemBd={clientes} handleOnChange={handleCategoryChange} />
-                <Select text="Campanha" name="campanha" itemBd={campanhas}  />  
-                <Select text="Status" name="status" itemBd={status} />
-                <Select text="Ordenação" name="ordenacao" itemBd={ordenacao} /> 
+            <form className="box_filter">
+                <Select label="Cliente" name="cliente" itemBd={clients}/>
+                <Select label="Campanha" name="campanha" itemBd={campanhas}  />  
+                <Select label="Status" name="status" itemBd={status} />
+                <Select label="Ordenação" name="ordenacao" itemBd={priorities} /> 
             </form> 
-            
+
             <Table>
+                {loadingJobs && <div>Loading...</div>}
+
                <table>
                     <thead>
                         <tr>
@@ -74,41 +63,54 @@ function ListTarifario() {
                         </tr>
                     </thead>
                     
+                    
                     <tbody>
-                        {filteredList.map((item) => {
-                                return (
-                                    <tr key={item.id} className={`status-${item.id}`}>
+                    {jobs && Object.keys(jobs.data).map((item, e) => {
 
-                                        <td className={'width_camp2'}>
-                                            <span>{item.fk_id_cliente}</span>
-                                        </td>
+                            return (
+                                
+                                <tr onClick={() => setIsModalVisible(true)} key={jobs.data[item].id} className={`status-${jobs.data[item].status.id}`}>
+                                    <td className={'width_camp2'}>
+                                        <span>{jobs.data[item].name}</span>
+                                    </td>
 
-                                        <td>
-                                            <span>{item.nome}</span>
-                                        </td>
+                                    <td>
+                                        <span>{jobs.data[item].name}</span>
+                                    </td>
 
-                                        <td>
-                                            <span>{item.campanha}</span>
-                                        </td>
+                                    <td>
+                                        <span>{jobs.data[item].campaign.name}</span>
+                                    </td>
 
-                                        <td>
-                                            <span>{item.fk_id_responsavel}</span>
-                                        </td>
+                                    <td className="width_camp2 hover_responsavel">
+                                        <span>{jobs.data[item].executors[0].name}</span>
+                                        <div className="tooltip_reps"><div>{jobs.data[item].executors.map(item => item.name)}</div></div>
+                                    </td>
 
-                                        <td className="width_camp2">
-                                            <span>{item.inicio}</span>
-                                        </td>
+                                    <td className="width_camp2">
+                                        <span>{
+                                            ajustDate(jobs.data[item].start)
+                                        }</span>
+                                    </td>
 
-                                        <td className="width_camp2">
-                                            <span>{item.fim}</span>
-                                        </td>
+                                    <td className="width_camp2">
+                                        <span>{jobs.data[item].end}</span>
+                                    </td>
 
-                                        <td className="width_camp3">
-                                            <span>{item.fk_name_status}</span>
-                                        </td>
-                                    </tr>
-                                )
-                            })}
+                                    <td className="width_camp3">
+                                        <span>{jobs.data[item].status.name}</span>
+                                    </td>
+                                </tr>
+                            )
+                        })}
+
+                        {isModalVisible ? (
+
+                        <Modal onClose={() => setIsModalVisible(false)}>
+                            asdas
+                        </Modal>
+
+                        ): null }
                     </tbody>
                </table>
            </Table>

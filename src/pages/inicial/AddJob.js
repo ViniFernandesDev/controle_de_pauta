@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 /* CUSTOM HOOK FETCH API */
-import { useFetch } from "../../components/hooks/useFetch";
+import { useFetchGet } from "../../components/hooks/useFetchGet";
 
 import Input from '../../components/form/Input';
 import Select from '../../components/form/Select';
@@ -10,67 +10,108 @@ import Submit from '../../components/form/Submit';
 
 function AddJob() {    
 
-    /* FETCH CLIENTES */
-    const urlClientes = "http://localhost:5000/clientes";
-    const {data: clientes} = useFetch(urlClientes);
+    // GET's list select
 
-    /* FETCH CAMPANHAS */
-    const urlCampanhas = "http://localhost:5000/campanhas";
-    const {data: campanhas} = useFetch(urlCampanhas);
+    const urlClients = "http://laravelapi-pauta.com.l.stph.srv.br/api/clients";
+    const {value: clients} = useFetchGet(urlClients);
 
-    /* FETCH RESPONSAVEL */
-    const urlResponsavel = "http://localhost:5000/responsavel";
-    const {data: responsavel} = useFetch(urlResponsavel);
+    const urlCampaigns = "http://laravelapi-pauta.com.l.stph.srv.br/api/campaigns";
+    const {value: campaigns} = useFetchGet(urlCampaigns);
 
-    /* FETCH STATUS */
-    const urlStatus = "http://localhost:5000/status";
-    const {data: status} = useFetch(urlStatus);
+    const urlStatus = "http://laravelapi-pauta.com.l.stph.srv.br/api/status";
+    const {value: status} = useFetchGet(urlStatus);
+
+    const urlPriorities = "http://laravelapi-pauta.com.l.stph.srv.br/api/priorities";
+    const {value: priorities} = useFetchGet(urlPriorities);
 
     
-    const [formValues, setFormValues] = useState([]);
+    // Information to POST
+    const [formValues, setFormValues] = useState({});
+    const [isPending, setIsPending] = useState(false);
+    const [success, Setsuccess] = useState(false);
+
+    // ID USUÁRIO FICTICIO
+    formValues.requester = "1" 
+
+    const handleChange = (e) => {
+        const {name, value} = e.target
+        setFormValues({...formValues, [name]: value})
+    }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         
-        const res = await fetch("http://localhost:5000/jobs", {
-            method: "POST",
+        setIsPending(true);
+
+        fetch("http://laravelapi-pauta.com.l.stph.srv.br/api/jobs", {
+            method: "POST",                
+            body: JSON.stringify(formValues),
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": "Bearer 1|IJFQxgiW1FjB3853dBxy5WDxKVMzHAcNGy7kPk7S",
+                "Access-Control-Allow-Origin": "*"
             },
-            body: JSON.stringify(formValues),
+        }).then(response => {
+            setIsPending(false);
+
+            // valida se a requisição falhou
+            if (!response.ok) {
+                return new Error('falhou a requisição') // cairá no catch da promise
+            }
+
+            // verificando pelo status
+            if (response.status === 404) {
+                return new Error('não encontrou qualquer resultado')
+            }
+
+            // verificando pelo status
+            if (response.status === 201) {
+                Setsuccess(true);
+            }
+
+            // retorna uma promise com os dados em JSON
+            console.log(response.json());
         });
-
-        console.log(formValues);
-
     }
 
-    function handleChange(e) {
-        setFormValues({...formValues, [e.target.name]: e.target.value})
-    }
-    
     return (
+        <>    
+                <form onSubmit={handleSubmit}>
 
-        <form id="formAdd" onSubmit={handleSubmit}>
+                    <Select name="client" label="Clientes" itemBd={clients} onChange={handleChange}/>
 
-            <Select name="clientes" label="Clientes" itemBd={clientes} onChange={handleChange}/>
+                    <Select name="campaign" label="Campanhas" itemBd={campaigns} onChange={handleChange}/>
 
-            <Select name="campanhas" label="Campanhas" itemBd={campanhas} onChange={handleChange}/>
+                    <Select name="executors" label="Responsável" itemBd={clients} onChange={handleChange}/>
 
-            <Select name="responsavel" label="Responsável" itemBd={responsavel} onChange={handleChange}/>
+                    <Select name="status" label="Status" itemBd={status} onChange={handleChange}/>
 
-            <Select name="status" label="Status" itemBd={status} onChange={handleChange}/>
+                    <Select name="priority" label="Prioridade" itemBd={priorities} onChange={handleChange}/>
 
-            <Input name="nome" text="Nome do Job" onChange={handleChange}/>
+                    <Input name="name" text="Nome do Job" onChange={handleChange}/>
 
-            <Input name="inicio" text="Iniciar em" onChange={handleChange}/>
+                    <Input type="date" name="start" text="Iniciar em" onChange={handleChange}/>
 
-            <Input name="fim" text="Concluir em" onChange={handleChange}/>
+                    <Input type="date" name="end" text="Concluir em" onChange={handleChange}/>
 
-            <TextArea name="descricao" text="Descrição" placeholder="Descrição do Job" onChange={handleChange}/>
+                    <TextArea name="description" text="Descrição" placeholder="Descrição do Job" onChange={handleChange}/>
+
+                    {!success && <Submit text="Cadastrar Job" />}
+                </form>
+
+
+            {isPending && 
+            <div className="signing_up">
+                <span>Cadastrando</span>
+            </div>
+            }
             
-            <Submit text="Cadastrar Job" />
-
-        </form>
+            {success && 
+                <div className="finished">
+                    <span>Job Adicionado</span>
+                </div>
+            }
+        </>
     )
 }
 

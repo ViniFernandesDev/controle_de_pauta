@@ -123,9 +123,48 @@ GERAL
 
 /*COR STATUS*/
 
-.status-Em Aprovação {background: #c6f9bd;}
-.status-2 {background: #f9f2c4;}
+.status-1 {background: #c6f9bd;}
+.status-2 {background: #869bff;}
 .status-3 {background: #ffcfe3;}
 .status-4 {background: #ffaeae;}
 .status-5 {background: #d2d2d2;}
 .status-6 {background: #f8f8f8;}
+.status-7 {background: #cadsdas;}
+.status-8 {background: #10a782;}
+.status-9 {background: #bdbdbd;}
+.status-10 {background: #ffe597;}
+
+.status-10 td:last-child span{
+  position:relative;
+}
+
+.status-10 td:last-child{
+  position:relative;
+}
+
+.status-10 td:last-child span::after {
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  background:red;
+  height:20px;
+  width:20px;
+}
+
+.status-10 td:last-child::before{
+  content:'';
+  position:fixed;
+  top:0;
+  left:0;
+  height:50px;
+  width:0;
+  transition:5s all;
+  background:yellow;
+}
+
+.status-10 td:last-child:hover::before {
+ left:0%;
+ z-index:100;
+ width:1500px;
+}

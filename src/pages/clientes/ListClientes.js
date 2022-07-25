@@ -1,24 +1,22 @@
-import {useState, useEffect} from 'react'
+/* CUSTOM HOOK FETCH API */
+import { useFetchGet } from "../../components/hooks/useFetchGet";
 
 import Table from "../../components/table/Table"
 
 function ListClientes() {
 
-    const [clientes, setClientes] = useState([])
+    /* FETCH Clientes */
+    const urlClientes = "http://laravelapi-pauta.com.l.stph.srv.br/api/clients";
+    const {value: clientes, loading} = useFetchGet(urlClientes);
 
-    useEffect(() => {
-        fetch("http://localhost:5000/clientes")
-        .then(response => response.json())
-        .then((data) => {
-            setClientes(data)
-        })
-        .catch((err) => console.log(err))
-       
-    }, [])
+    console.log(clientes)
 
     return (
         <>
             <Table>
+
+            {loading && <div>Loading...</div>}
+
                <table>
                     <thead>
                         <tr>
@@ -30,24 +28,24 @@ function ListClientes() {
                     </thead>
 
                     <tbody>
-                        {clientes.map((item, index) => {
+                    {clientes && Object.keys(clientes.data).map((item, e) => {
+
                             return (
-                                <tr key={index}>
-                                    <td>
-                                        <span>{item.id}</span>
+
+                                <tr key={clientes.data[item].id} className={`status-${clientes.data[item].id}`}>
+
+                                    <td className={'width_camp2'}>
+                                        <span>{clientes.data[item].id}</span>
                                     </td>
 
                                     <td>
-                                        <span>{item.nome}</span>
+                                        <span>{clientes.data[item].corporate_name}</span>
                                     </td>
 
-                                    <td className='width_camp2'>
-                                        <span>{item.telefone}</span>
+                                    <td>
+                                        <span>{clientes.data[item].corporate_name}</span>
                                     </td>
 
-                                    <td className='width_camp3'>
-                                        <span>{item.email}</span>
-                                    </td>
                                 </tr>
                             )
                         })}

@@ -1,6 +1,6 @@
 import styles from './Form.module.css'
 
-function TextArea ({name,text,placeholder, value}) {
+function TextArea ({name,text,placeholder, onChange, value}) {
     return (
         <div className={styles.textarea}>
             <div className={styles.input}>
@@ -9,6 +9,7 @@ function TextArea ({name,text,placeholder, value}) {
                     name={name} 
                     id={name} 
                     placeholder={placeholder} 
+                    onChange={onChange}
                     value={value}>
 
                 </textarea>

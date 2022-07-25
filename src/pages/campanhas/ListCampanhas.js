@@ -1,30 +1,22 @@
-import {useState, useEffect} from 'react'
+/* CUSTOM HOOK FETCH API */
+import { useFetchGet } from "../../components/hooks/useFetchGet";
 
 import Table from "../../components/table/Table"
 
 function ListCampanhas() {
 
-    const [campanhas, setCampanhas] = useState([])
+    /* FETCH urlCampaigns */
+    const urlCampaigns = "http://laravelapi-pauta.com.l.stph.srv.br/api/campaigns";
+    const {value: campaigns, loading} = useFetchGet(urlCampaigns);
 
-    useEffect(() => {
-        fetch("http://laravelapi-pauta.com.l.stph.srv.br/api/jobs", {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer 4|VyIqYcIF0ifyGWfjhKKWUPoKPi1bznqmOjDVruU4',
-            }
-        })
-        .then(response => response.json())
-        .then((data) => {
-            setCampanhas(data);
-        })
-        .catch((err) => console.log(err))
-       
-    }, [])
-    
+    console.log(campaigns)
 
     return (
         <>
             <Table>
+
+                {loading && <div>Loading...</div>}
+
                <table>
                     <thead>
                         <tr>
@@ -35,27 +27,28 @@ function ListCampanhas() {
                         </tr>
                     </thead>
 
+
                     <tbody>
-                        {campanhas?.map((item, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td>
-                                        <span>{item.id}</span>
-                                    </td>
+                    {campaigns && Object.keys(campaigns.data).map((item, e) => {
 
-                                    <td>
-                                        <span>{item.name}</span>
-                                    </td>
+                        return (
 
-                                    <td>
-                                        <span>{item.cliente}</span>
-                                    </td>
+                            <tr key={campaigns.data[item].id} className={`status-${campaigns.data[item].id}`}>
 
-                                    <td>
-                                        <span>{item.briefing}</span>
-                                    </td>
-                                </tr>
-                            )
+                                <td className={'width_camp2'}>
+                                    <span>{campaigns.data[item].id}</span>
+                                </td>
+
+                                <td>
+                                    <span>{campaigns.data[item].corporate_name}</span>
+                                </td>
+
+                                <td>
+                                    <span>{campaigns.data[item].corporate_name}</span>
+                                </td>
+
+                            </tr>
+                        )
                         })}
                     </tbody>
                </table>

@@ -4,6 +4,9 @@ import Clientes from './pages/clientes/Clientes'
 import Campanhas from './pages/campanhas/Campanhas'
 import Container from './components/container/Container'
 import Navbar from './components/navbar/Navbar'
+import AddJob from './pages/inicial/AddJob'
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 function App() {
   return (
@@ -15,6 +18,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/clientes" element={<Clientes />} />
             <Route path="/campanhas" element={<Campanhas />} />
+            <Route path="/job/:id" element={<AddJob />} />
         </Routes>
       </Container>      
 
