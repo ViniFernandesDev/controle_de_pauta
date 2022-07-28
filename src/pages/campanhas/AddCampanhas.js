@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 import InputHook from '../../components/form/InputHook';
-import SelectHook from '../../components/form/SelectHook';
+import Select from '../../components/form/Select';
 import Submit from '../../components/form/Submit';
 
 function AddCampanhas() {
@@ -14,7 +14,7 @@ function AddCampanhas() {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
 
-            <SelectHook label="Cliente" register={register} required />
+            <Select label="Cliente" register={register} required />
 
             <InputHook label="Nome da campanha" register={register} required />
             

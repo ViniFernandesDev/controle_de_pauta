@@ -8,12 +8,13 @@ export const useFetchGet = (url) => {
         fetch(url, {
             headers: {
                 'Accept': 'application/json',
-                'Authorization': 'Bearer 1|IJFQxgiW1FjB3853dBxy5WDxKVMzHAcNGy7kPk7S',
+                'Authorization': 'Bearer 1|cG2r320AFPSo9zLb3v27JlKk82ZiJV18uk0mhPN5',
             }
         })
         .then(async (response) => {
             const json = await response.json();
             setValue(json);
+            console.log(`Chamou ${url}`)
         })
         .catch((error) => {
             setError(error);

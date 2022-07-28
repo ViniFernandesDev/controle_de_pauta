@@ -54,6 +54,7 @@
 
 .content tr {
   position: relative;
+  cursor:pointer;
 }
 
 .content thead th {

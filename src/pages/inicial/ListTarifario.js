@@ -1,5 +1,7 @@
 import {useState} from 'react'
 
+import EditJob from "./EditJob"
+
 /* CUSTOM HOOK FETCH API */
 import { useFetchGet } from "../../components/hooks/useFetchGet";
 
@@ -38,6 +40,13 @@ function ListTarifario() {
     /* MODAL */
     const [isModalVisible, setIsModalVisible] = useState(false);
     
+    const [idItemSelect, setIdItemSelect] = useState("");
+
+    const handleClick = function(id) {
+        setIsModalVisible(true);
+        setIdItemSelect(id)
+      }
+
     return (
         <>
             <form className="box_filter">
@@ -63,15 +72,14 @@ function ListTarifario() {
                         </tr>
                     </thead>
                     
-                    
                     <tbody>
                     {jobs && Object.keys(jobs.data).map((item, e) => {
 
                             return (
                                 
-                                <tr onClick={() => setIsModalVisible(true)} key={jobs.data[item].id} className={`status-${jobs.data[item].status.id}`}>
+                                <tr onClick={() => handleClick(jobs.data[item].id)} key={jobs.data[item].id} className={`status-${jobs.data[item].status.id}`}>
                                     <td className={'width_camp2'}>
-                                        <span>{jobs.data[item].name}</span>
+                                        <span>{jobs.data[item].client.name}</span>
                                     </td>
 
                                     <td>
@@ -103,16 +111,16 @@ function ListTarifario() {
                                 </tr>
                             )
                         })}
-
-                        {isModalVisible ? (
-
-                        <Modal onClose={() => setIsModalVisible(false)}>
-                            asdas
-                        </Modal>
-
-                        ): null }
                     </tbody>
                </table>
+
+               {isModalVisible ? (
+
+                <Modal onClose={() => setIsModalVisible(false)}>
+                    <EditJob idItemSelect={idItemSelect} />
+                </Modal>
+
+                ): null }
            </Table>
         </>
     )

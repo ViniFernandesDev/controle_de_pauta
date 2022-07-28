@@ -23,6 +23,9 @@ function AddJob() {
 
     const urlPriorities = "http://laravelapi-pauta.com.l.stph.srv.br/api/priorities";
     const {value: priorities} = useFetchGet(urlPriorities);
+    
+    const urlUsers = "http://laravelapi-pauta.com.l.stph.srv.br/api/users";
+    const {value: users} = useFetchGet(urlUsers);
 
     
     // Information to POST
@@ -48,7 +51,7 @@ function AddJob() {
             body: JSON.stringify(formValues),
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer 1|IJFQxgiW1FjB3853dBxy5WDxKVMzHAcNGy7kPk7S",
+                "Authorization": "Bearer 1|cG2r320AFPSo9zLb3v27JlKk82ZiJV18uk0mhPN5",
                 "Access-Control-Allow-Origin": "*"
             },
         }).then(response => {
@@ -82,7 +85,7 @@ function AddJob() {
 
                     <Select name="campaign" label="Campanhas" itemBd={campaigns} onChange={handleChange}/>
 
-                    <Select name="executors" label="Responsável" itemBd={clients} onChange={handleChange}/>
+                    <Select name="executors" label="Responsável" itemBd={users} onChange={handleChange}/>
 
                     <Select name="status" label="Status" itemBd={status} onChange={handleChange}/>
 

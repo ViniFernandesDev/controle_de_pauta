@@ -1,6 +1,7 @@
 import styles from './Form.module.css'
 
-function Select ({name, itemBd, onChange, label,}) {
+function SelectOptionSelected ({name, itemBd, onChange, label, itemOptionDefault}) {
+
     return (
 
         <div className={styles.input}>
@@ -11,7 +12,7 @@ function Select ({name, itemBd, onChange, label,}) {
                 
                 {itemBd && Object.keys(itemBd.data).map((item, e) => {
                     return (
-                        <option value={itemBd.data[item].id} key={itemBd.data[item].id}>
+                        <option selected={itemBd.data[item].id === itemOptionDefault ? true : false} value={itemBd.data[item].id} key={itemBd.data[item].id}>
                         {itemBd.data[item].name}
                         </option>
                     )
@@ -22,8 +23,4 @@ function Select ({name, itemBd, onChange, label,}) {
     )
 }
 
-export default Select
-
-/*
-
-*/
+export default SelectOptionSelected

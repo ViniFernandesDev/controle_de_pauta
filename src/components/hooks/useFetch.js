@@ -24,7 +24,7 @@ export const useFetch = (url) => {
             setConfig({
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer 4|VyIqYcIF0ifyGWfjhKKWUPoKPi1bznqmOjDVruU4',
+                    'Authorization': 'Bearer 1|cG2r320AFPSo9zLb3v27JlKk82ZiJV18uk0mhPN5',
                 }
             });
 
