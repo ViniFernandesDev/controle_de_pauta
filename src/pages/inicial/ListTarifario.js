@@ -1,10 +1,8 @@
-import {useState} from 'react'
+import {useState, useContext } from 'react'
+
+import ContextTeste from '../../context/Context';
 
 import EditJob from "./EditJob"
-
-/* CUSTOM HOOK FETCH API */
-import { useFetchGet } from "../../components/hooks/useFetchGet";
-
 import Table from "../../components/table/Table"
 import Select from '../../components/form/Select'
 import './ListTarifario.css'
@@ -13,29 +11,11 @@ import Modal from '../../components/modal/Modal';
 
 function ListTarifario() {
 
+    const {jobs, clients, campaigns, status, priorities } = useContext(ContextTeste);
+
     function ajustDate(d) {
         return new Date(d).toLocaleDateString('pt-BR');
     }
-
-    /* FETCH JOBS */
-    const urlJobs = "http://laravelapi-pauta.com.l.stph.srv.br/api/jobs";
-    const {value: jobs, loadingJobs} = useFetchGet(urlJobs);
-
-    /* FETCH JOBS */
-    const urlClientes = "http://laravelapi-pauta.com.l.stph.srv.br/api/clients";
-    const {value: clients} = useFetchGet(urlClientes);
-
-      /* FETCH CAMPANHAS */
-    const urlCampanhas = "http://laravelapi-pauta.com.l.stph.srv.br/api/campaigns";
-    const {value: campanhas} = useFetchGet(urlCampanhas);
-
-     /* FETCH Status */
-     const urlStatus = "http://laravelapi-pauta.com.l.stph.srv.br/api/status";
-     const {value: status} = useFetchGet(urlStatus);
-
-     /* FETCH Status */
-     const urlPriorities = "http://laravelapi-pauta.com.l.stph.srv.br/api/priorities";
-     const {value: priorities} = useFetchGet(urlPriorities);
 
     /* MODAL */
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -51,14 +31,12 @@ function ListTarifario() {
         <>
             <form className="box_filter">
                 <Select label="Cliente" name="cliente" itemBd={clients}/>
-                <Select label="Campanha" name="campanha" itemBd={campanhas}  />  
+                <Select label="Campanha" name="campanha" itemBd={campaigns}  />  
                 <Select label="Status" name="status" itemBd={status} />
                 <Select label="Ordenação" name="ordenacao" itemBd={priorities} /> 
             </form> 
 
             <Table>
-                {loadingJobs && <div>Loading...</div>}
-
                <table>
                     <thead>
                         <tr>

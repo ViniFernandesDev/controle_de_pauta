@@ -9,8 +9,6 @@ function ListClientes() {
     const urlClientes = "http://laravelapi-pauta.com.l.stph.srv.br/api/clients";
     const {value: clientes, loading} = useFetchGet(urlClientes);
 
-    console.log(clientes)
-
     return (
         <>
             <Table>

@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
-/* CUSTOM HOOK FETCH API */
-import { useFetchGet } from "../../components/hooks/useFetchGet";
+import ContextValueAPI from '../../context/Context';
 
 import Input from '../../components/form/Input';
 import Select from '../../components/form/Select';
@@ -12,21 +11,7 @@ function AddJob() {
 
     // GET's list select
 
-    const urlClients = "http://laravelapi-pauta.com.l.stph.srv.br/api/clients";
-    const {value: clients} = useFetchGet(urlClients);
-
-    const urlCampaigns = "http://laravelapi-pauta.com.l.stph.srv.br/api/campaigns";
-    const {value: campaigns} = useFetchGet(urlCampaigns);
-
-    const urlStatus = "http://laravelapi-pauta.com.l.stph.srv.br/api/status";
-    const {value: status} = useFetchGet(urlStatus);
-
-    const urlPriorities = "http://laravelapi-pauta.com.l.stph.srv.br/api/priorities";
-    const {value: priorities} = useFetchGet(urlPriorities);
-    
-    const urlUsers = "http://laravelapi-pauta.com.l.stph.srv.br/api/users";
-    const {value: users} = useFetchGet(urlUsers);
-
+    const {clients, campaigns, status, priorities, users} = useContext(ContextValueAPI);
     
     // Information to POST
     const [formValues, setFormValues] = useState({});

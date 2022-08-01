@@ -6,8 +6,8 @@ function Select ({name, itemBd, onChange, label,}) {
         <div className={styles.input}>
             <label>{label}</label>
 
-            <select name={name} onChange={onChange} required>
-                <option value="">Selecione uma opção</option>
+            <select defaultValue={'DEFAULT'} name={name} onChange={onChange} required>
+                <option value="DEFAULT" disabled>Selecione uma opção</option>
                 
                 {itemBd && Object.keys(itemBd.data).map((item, e) => {
                     return (
