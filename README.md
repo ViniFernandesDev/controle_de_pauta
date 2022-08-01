@@ -1,3 +1,13 @@
+# Sistema de controle de pauta
+
+Sendo construído para um processo de organização de uma agência.
+O que o projeto contém?
+- Listagem, Edição e Adição de: Campanhas, Jobs e Clientes
+- Notificação quando algo for alterado
+- Filtro
+- Login com exibição de alguns dados somente para super-usuário
+- Dados do Job = Cliente / Job / Campanha / Responsável/Equipe / Prazo-Inicio / Prazo-Fim / Status
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
