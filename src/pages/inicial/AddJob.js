@@ -62,6 +62,8 @@ function AddJob() {
         });
     }
 
+    console.log(formValues)
+
     return (
         <>    
                 <form onSubmit={handleSubmit}>

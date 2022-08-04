@@ -1,13 +1,14 @@
-import { useState } from 'react'
+import {useState } from 'react'
 
-import Input from "../../components/form/Input"
-import Title from "../../components/title/Title"
-import ListClientes from "./ListClientes"
 import Modal from '../../components/modal/Modal';
-import AddClientes from './AddClientes';
+import Title from "../../components/title/Title"
+import Input from '../../components/form/Input'
+import AddClientes from "./AddClientes"
+import ListClientes from './ListClientes';
 
 function Clientes() {
 
+    /* MODAL */
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     return (
@@ -16,7 +17,7 @@ function Clientes() {
             <Title title="Clientes | Adicionar" />
 
             <div className="display100BetCen">
-                <Input type="text" text="Encontrar" name="encontrarCliente" />
+                <Input type="text" text="Encontrar cliente" name="encontrarCliente" />
 
                 <div>
                     <button onClick={() => setIsModalVisible(true)}>Adicionar Cliente</button>

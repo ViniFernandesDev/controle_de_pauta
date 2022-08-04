@@ -1,19 +1,29 @@
-/* CUSTOM HOOK FETCH API */
-import { useFetchGet } from "../../components/hooks/useFetchGet";
+import {useState, useContext } from 'react'
 
+import ContextTeste from '../../context/Context';
 import Table from "../../components/table/Table"
+import Modal from '../../components/modal/Modal';
+import EditClient from "./EditClient"
 
 function ListClientes() {
 
-    /* FETCH Clientes */
-    const urlClientes = "http://laravelapi-pauta.com.l.stph.srv.br/api/clients";
-    const {value: clientes, loading} = useFetchGet(urlClientes);
+    const {clients, loadingClients } = useContext(ContextTeste);
 
+    /* MODAL */
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    
+    const [idItemSelect, setIdItemSelect] = useState("");
+
+    const handleClick = function(id) {
+        setIsModalVisible(true);
+        setIdItemSelect(id)
+      }
     return (
         <>
+          
             <Table>
 
-            {loading && <div>Loading...</div>}
+            {loadingClients && <div>Loading...</div>}
 
                <table>
                     <thead>
@@ -26,22 +36,26 @@ function ListClientes() {
                     </thead>
 
                     <tbody>
-                    {clientes && Object.keys(clientes.data).map((item, e) => {
+                    {clients && Object.keys(clients.data).map((item, e) => {
 
                             return (
 
-                                <tr key={clientes.data[item].id} className={`status-${clientes.data[item].id}`}>
+                                <tr onClick={() => handleClick(clients.data[item].id)} key={clients.data[item].id}>
 
                                     <td className={'width_camp2'}>
-                                        <span>{clientes.data[item].id}</span>
+                                        <span>{clients.data[item].id}</span>
                                     </td>
 
                                     <td>
-                                        <span>{clientes.data[item].corporate_name}</span>
+                                        <span>{clients.data[item].corporate_name}</span>
                                     </td>
 
                                     <td>
-                                        <span>{clientes.data[item].corporate_name}</span>
+                                        <span>{clients.data[item].phone}</span>
+                                    </td>
+
+                                    <td>
+                                        <span>{clients.data[item].email}</span>
                                     </td>
 
                                 </tr>
@@ -49,7 +63,15 @@ function ListClientes() {
                         })}
                     </tbody>
                </table>
-           </Table>
+
+                {isModalVisible ? (
+
+                    <Modal onClose={() => setIsModalVisible(false)}>
+                        <EditClient idItemSelect={idItemSelect} />
+                    </Modal>
+
+                ): null }
+                </Table>
 
         </>
     )
