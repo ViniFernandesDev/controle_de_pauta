@@ -1,21 +1,33 @@
-/* CUSTOM HOOK FETCH API */
-import { useFetchGet } from "../../components/hooks/useFetchGet";
+import {useState, useContext } from 'react'
 
+import ContextTeste from '../../context/Context';
 import Table from "../../components/table/Table"
+import Modal from '../../components/modal/Modal';
 
-function ListCampanhas() {
+function ListCampanhas({contentSearch}) {
 
-    /* FETCH urlCampaigns */
-    const urlCampaigns = "http://laravelapi-pauta.com.l.stph.srv.br/api/campaigns";
-    const {value: campaigns, loading} = useFetchGet(urlCampaigns);
+    const {campaigns, loadingCampaigns } = useContext(ContextTeste);
 
     console.log(campaigns)
 
+    /* MODAL */
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const [idItemSelect, setIdItemSelect] = useState("");
+
+    const handleClick = function(id) {
+        setIsModalVisible(true);
+        setIdItemSelect(id)
+      }
+
+      const filteredList = campaigns && campaigns.data.filter((item) => item.client.name.toLowerCase().includes(contentSearch));
+
     return (
         <>
+          
             <Table>
 
-                {loading && <div>Loading...</div>}
+            {loadingCampaigns && <div>Loading...</div>}
 
                <table>
                     <thead>
@@ -27,32 +39,45 @@ function ListCampanhas() {
                         </tr>
                     </thead>
 
-
                     <tbody>
-                    {campaigns && Object.keys(campaigns.data).map((item, e) => {
 
-                        return (
+                        
+                    {campaigns && Object.keys(filteredList).map((item, e) => {          
 
-                            <tr key={campaigns.data[item].id} className={`status-${campaigns.data[item].id}`}>
+                            return (
 
-                                <td className={'width_camp2'}>
-                                    <span>{campaigns.data[item].id}</span>
-                                </td>
+                                <tr onClick={() => handleClick(filteredList[item].id)} key={filteredList[item].id}>
 
-                                <td>
-                                    <span>{campaigns.data[item].corporate_name}</span>
-                                </td>
+                                    <td className={'width_camp2'}>
+                                        <span>{filteredList[item].id}</span>
+                                    </td>
 
-                                <td>
-                                    <span>{campaigns.data[item].corporate_name}</span>
-                                </td>
+                                    <td>
+                                        <span>{filteredList[item].name}</span>
+                                    </td>
 
-                            </tr>
-                        )
+                                    <td>
+                                        <span>{filteredList[item].client.name}</span>
+                                    </td>
+
+                                    <td>
+                                        <span>{filteredList[item].description}</span>
+                                    </td>
+
+                                </tr>
+                            )
                         })}
                     </tbody>
                </table>
-           </Table>
+
+                {isModalVisible ? (
+
+                    <Modal onClose={() => setIsModalVisible(false)}>
+                        teste
+                    </Modal>
+
+                ): null }
+                </Table>
 
         </>
     )

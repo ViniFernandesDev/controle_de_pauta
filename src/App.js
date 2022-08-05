@@ -23,7 +23,7 @@ function App() {
 
   /* FETCH CAMPANHAS */
   const urlCampanhas = "http://laravelapi-pauta.com.l.stph.srv.br/api/campaigns";
-  const {value: campaigns} = useFetchGet(urlCampanhas);
+  const {value: campaigns, loadingCampaigns} = useFetchGet(urlCampanhas);
 
    /* FETCH Status */
    const urlStatus = "http://laravelapi-pauta.com.l.stph.srv.br/api/status";
@@ -41,7 +41,7 @@ function App() {
       <Navbar/>
 
       <Container>
-        <ContextValueAPI.Provider value={{jobs, clients, loadingClients, campaigns, status, priorities, users}}>
+        <ContextValueAPI.Provider value={{jobs, clients, loadingClients, campaigns, loadingCampaigns, status, priorities, users}}>
           <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/clientes" element={<Clientes />} />

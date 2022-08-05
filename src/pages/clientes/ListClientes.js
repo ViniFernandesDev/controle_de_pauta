@@ -19,8 +19,7 @@ function ListClientes({contentSearch}) {
         setIdItemSelect(id)
       }
 
-      const teste = clients && clients.data.filter((item) => item.corporate_name.toLowerCase().includes(contentSearch));
-      console.log(teste)
+      const filteredList = clients && clients.data.filter((item) => item.corporate_name.toLowerCase().includes(contentSearch));
 
     return (
         <>
@@ -42,26 +41,26 @@ function ListClientes({contentSearch}) {
                     <tbody>
 
                         
-                    {clients && Object.keys(teste).map((item, e) => {          
+                    {clients && Object.keys(filteredList).map((item, e) => {          
 
                             return (
 
-                                <tr onClick={() => handleClick(teste[item].id)} key={teste[item].id}>
+                                <tr onClick={() => handleClick(filteredList[item].id)} key={filteredList[item].id}>
 
                                     <td className={'width_camp2'}>
-                                        <span>{teste[item].id}</span>
+                                        <span>{filteredList[item].id}</span>
                                     </td>
 
                                     <td>
-                                        <span>{teste[item].corporate_name}</span>
+                                        <span>{filteredList[item].corporate_name}</span>
                                     </td>
 
                                     <td>
-                                        <span>{teste[item].phone}</span>
+                                        <span>{filteredList[item].phone}</span>
                                     </td>
 
                                     <td>
-                                        <span>{teste[item].email}</span>
+                                        <span>{filteredList[item].email}</span>
                                     </td>
 
                                 </tr>

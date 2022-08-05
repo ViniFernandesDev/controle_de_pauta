@@ -8,6 +8,15 @@ import AddCampanhas from './AddCampanhas';
 
 function Clientes() {
 
+    // Information to POST
+    const [query, setQuery] = useState("");
+
+    const handleChange = (e) => {
+        setQuery(e.target.value)
+    }
+
+
+    /* MODAL */
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     return (
@@ -16,7 +25,7 @@ function Clientes() {
             <Title title="Campanhas | Adicionar" />
 
             <div className="display100BetCen">
-                <Input type="text" text="Encontrar" name="encontrarCampanha" />
+                <Input type="text" text="Encontrar cliente" name="encontrarCliente" onChange={handleChange}/>
 
                 <div>
                     <button onClick={() => setIsModalVisible(true)}>Adicionar Campanha</button>
@@ -31,7 +40,7 @@ function Clientes() {
                 </div>
             </div>
 
-            <ListCampanhas/>
+            <ListCampanhas contentSearch={query} />
 
         </>
     )
