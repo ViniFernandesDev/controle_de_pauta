@@ -5,19 +5,23 @@ import Table from "../../components/table/Table"
 import Modal from '../../components/modal/Modal';
 import EditClient from "./EditClient"
 
-function ListClientes() {
+function ListClientes({contentSearch}) {
 
     const {clients, loadingClients } = useContext(ContextTeste);
 
     /* MODAL */
     const [isModalVisible, setIsModalVisible] = useState(false);
-    
+
     const [idItemSelect, setIdItemSelect] = useState("");
 
     const handleClick = function(id) {
         setIsModalVisible(true);
         setIdItemSelect(id)
       }
+
+      const teste = clients && clients.data.filter((item) => item.corporate_name.toLowerCase().includes(contentSearch));
+      console.log(teste)
+
     return (
         <>
           
@@ -36,26 +40,28 @@ function ListClientes() {
                     </thead>
 
                     <tbody>
-                    {clients && Object.keys(clients.data).map((item, e) => {
+
+                        
+                    {clients && Object.keys(teste).map((item, e) => {          
 
                             return (
 
-                                <tr onClick={() => handleClick(clients.data[item].id)} key={clients.data[item].id}>
+                                <tr onClick={() => handleClick(teste[item].id)} key={teste[item].id}>
 
                                     <td className={'width_camp2'}>
-                                        <span>{clients.data[item].id}</span>
+                                        <span>{teste[item].id}</span>
                                     </td>
 
                                     <td>
-                                        <span>{clients.data[item].corporate_name}</span>
+                                        <span>{teste[item].corporate_name}</span>
                                     </td>
 
                                     <td>
-                                        <span>{clients.data[item].phone}</span>
+                                        <span>{teste[item].phone}</span>
                                     </td>
 
                                     <td>
-                                        <span>{clients.data[item].email}</span>
+                                        <span>{teste[item].email}</span>
                                     </td>
 
                                 </tr>

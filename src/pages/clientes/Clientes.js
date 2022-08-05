@@ -1,4 +1,4 @@
-import {useState } from 'react'
+import { useState } from 'react'
 
 import Modal from '../../components/modal/Modal';
 import Title from "../../components/title/Title"
@@ -7,6 +7,14 @@ import AddClientes from "./AddClientes"
 import ListClientes from './ListClientes';
 
 function Clientes() {
+
+    // Information to POST
+    const [query, setQuery] = useState("");
+
+    const handleChange = (e) => {
+        setQuery(e.target.value)
+    }
+
 
     /* MODAL */
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -17,7 +25,7 @@ function Clientes() {
             <Title title="Clientes | Adicionar" />
 
             <div className="display100BetCen">
-                <Input type="text" text="Encontrar cliente" name="encontrarCliente" />
+                <Input type="text" text="Encontrar cliente" name="encontrarCliente" onChange={handleChange}/>
 
                 <div>
                     <button onClick={() => setIsModalVisible(true)}>Adicionar Cliente</button>
@@ -32,7 +40,7 @@ function Clientes() {
                 </div>
             </div>
 
-            <ListClientes/>
+            <ListClientes contentSearch={query} />
 
         </>
     )
