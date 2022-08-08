@@ -20,7 +20,11 @@ function ListCampanhas({contentSearch}) {
         setIdItemSelect(id)
       }
 
-      const filteredList = campaigns && campaigns.data.filter((item) => item.client.name.toLowerCase().includes(contentSearch));
+    const filteredList = campaigns && campaigns.data.filter((item) => item.client.name.toLowerCase().includes(contentSearch));
+
+    function reduceDescription(description) {
+        return description.length > 10 ? description.substring(0, 80) + "..." : description;
+    }
 
     return (
         <>
@@ -61,7 +65,10 @@ function ListCampanhas({contentSearch}) {
                                     </td>
 
                                     <td>
-                                        <span>{filteredList[item].description}</span>
+                                        <span>{
+                                            reduceDescription(filteredList[item].description)
+                                        }
+                                        </span>
                                     </td>
 
                                 </tr>

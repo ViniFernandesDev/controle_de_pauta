@@ -14,7 +14,7 @@ export const useFetchGet = (url) => {
         .then(async (response) => {
             const json = await response.json();
             setValue(json);
-            console.log(`renderizou ${url}`)
+            //console.log(`renderizou ${url}`)
         })
         .catch((error) => {
             setError(error);

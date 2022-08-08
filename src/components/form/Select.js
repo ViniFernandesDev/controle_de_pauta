@@ -7,7 +7,7 @@ function Select ({name, itemBd, onChange, label,}) {
             <label>{label}</label>
 
             <select defaultValue={'DEFAULT'} name={name} onChange={onChange} required>
-                <option value="DEFAULT" disabled>Selecione uma opção</option>
+                <option value="">Selecione uma opção</option>
                 
                 {itemBd && Object.keys(itemBd.data).map((item, e) => {
                     return (

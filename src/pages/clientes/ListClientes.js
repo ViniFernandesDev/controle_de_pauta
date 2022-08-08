@@ -19,7 +19,9 @@ function ListClientes({contentSearch}) {
         setIdItemSelect(id)
       }
 
-      const filteredList = clients && clients.data.filter((item) => item.corporate_name.toLowerCase().includes(contentSearch));
+      const filteredList = clients && 
+      clients.data.filter((item) => item.corporate_name.toLowerCase()
+      .includes(contentSearch));
 
     return (
         <>
