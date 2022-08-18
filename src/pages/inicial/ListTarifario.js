@@ -69,7 +69,7 @@ function ListTarifario() {
                                     </td>
 
                                     <td className="width_camp2 hover_responsavel">
-                                        <span>{jobs.data[item].executors[0].name}</span>
+                                        {/*<span>{jobs.data[item].executors[0].name}</span>*/}
                                         <div className="tooltip_reps"><div>{jobs.data[item].executors.map(item => item.name)}</div></div>
                                     </td>
 
